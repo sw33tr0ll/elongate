@@ -1,6 +1,7 @@
 import json
 
 def analyze_tweet(event, _):
+    print(event)
     tweet_url = event['body']
     http_response = {
         "statusCode": 200,
