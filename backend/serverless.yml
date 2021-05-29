@@ -29,5 +29,5 @@ functions:
     events:
       - http:
           path: analyze
-          method: post
+          method: any
           cors: true
