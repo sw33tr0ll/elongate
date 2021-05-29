@@ -12,7 +12,7 @@ import { AnalysisResponse } from './models/AnalysisResponse';
 export class AppComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   title: string;
-  api_response: AnalysisResponse[] = [];
+  api_response: any;
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     const tweet_url = this.form.value.tweet;
     console.log(tweet_url);
     this.http.post('https://elongate-api.loganevans.me/prod/analyze',{'tweet': tweet_url}).subscribe(data => {
-      this.api_response = Object.values(data);
+      this.api_response = JSON.stringify(data);
       console.log(this.api_response);
     }, err => console.error(err), () => console.log('Finished Loading...'));
   }

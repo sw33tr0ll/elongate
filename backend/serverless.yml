@@ -11,6 +11,8 @@ plugins:
   - serverless-domain-manager
   
 custom:                                             # settings for the plugins: 
+  pythonRequirements:
+    usePoetry: true
   customDomain:                                     # | custom domain:
     domainName: "elongate-api.loganevans.me"      # --> 
     stage: ${opt:stage,'dev'}                       # --> adds /prod/ or /dev/
