@@ -11,7 +11,6 @@ def analyze_tweet(event, _):
             },
             "body": json.dumps({"tweet": tweet_url,"elon":"true"})
         }
-        return http_response
     except Exception as e:
         print(e)
         http_response = {
@@ -21,3 +20,4 @@ def analyze_tweet(event, _):
             },
             "body": json.dumps({"error": e})
         }
+    return http_response
