@@ -37,7 +37,6 @@ functions:
   checkRecentElonTweets:
     handler: app.check_recent_elon_tweets
     events:
-      - schedule: rate(1 minute)
       - http:
           path: recent
           method: any
