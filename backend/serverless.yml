@@ -10,8 +10,10 @@ provider:
     - Effect: "Allow"                     # give lambda permissions for...
       Action:                             # 
         - "ssm:GetParameter"              # for SSM getting keys and such
+        - "comprehend:DetectSentiment"              # for SSM getting keys and such
       Resource:
         - "arn:aws:ssm:us-east-1:311306608161:parameter/elongate*"     
+        - "arn:aws:comprehend:us-east-1:311306608161:*"     
 
 plugins:
   - serverless-domain-manager
