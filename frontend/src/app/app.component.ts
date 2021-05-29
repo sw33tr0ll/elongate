@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     const tweet_url = this.form.value.tweet;
     console.log(tweet_url);
     this.http.post('https://elongate-api.loganevans.me/prod/analyze',{'tweet': tweet_url}).subscribe(data => {
-      this.api_response = JSON.stringify(data);
+      this.api_response = JSON.stringify(data).replace(/([{},:])/g, ' $1 ');
       console.log(this.api_response);
     }, err => console.error(err), () => console.log('Finished Loading...'));
   }
