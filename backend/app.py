@@ -2,13 +2,14 @@ import json
 import tweepy
 import boto3
 
-ssm_client = boto3.client('ssm')
+ssm = boto3.client('ssm')
+comprehend = boto3.client('comprehend')
 
 try:
-    api_key = ssm_client.get_parameter(Name='elongate_api_key')['Parameter']['Value']
-    api_secret_key = ssm_client.get_parameter(Name='elongate_api_secret_key')['Parameter']['Value']
-    access_token = ssm_client.get_parameter(Name='elongate_access_token')['Parameter']['Value']
-    access_token_secret = ssm_client.get_parameter(Name='elongate_access_token_secret')['Parameter']['Value']
+    api_key = ssm.get_parameter(Name='elongate_api_key')['Parameter']['Value']
+    api_secret_key = ssm.get_parameter(Name='elongate_api_secret_key')['Parameter']['Value']
+    access_token = ssm.get_parameter(Name='elongate_access_token')['Parameter']['Value']
+    access_token_secret = ssm.get_parameter(Name='elongate_access_token_secret')['Parameter']['Value']
 except Exception as e:
     print(f"failed to get twitter keys from SSM :: {e}")
 
@@ -53,6 +54,7 @@ def analyze_tweet(event, _):
         #check if tweet mentions stonk/coin
         elon_tweet_text = elon_tweet.text
         #NLP score for tweet
+        elon_sentiment = comprehend.detect_sentiment(Text=elon_tweet_text,LanguageCode='en')['Sentiment']
         #ByBit cart link for tweet
         #notification?
         http_response = {
@@ -64,7 +66,7 @@ def analyze_tweet(event, _):
                 "tweet_url": tweet_url,
                 "valid_elon_tweet":"true",
                 "mentioned_stonks_or_coins": "none",
-                "sentiment": "none",
+                "elon_sentiment": elon_sentiment,
                 "text": elon_tweet_text,
                 "bitbuy_link": "none"
             })
