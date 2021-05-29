@@ -5,10 +5,10 @@ import boto3
 ssm_client = boto3.client('ssm')
 
 try:
-    api_key = ssm_client.get_parameter(Name='elongate_api_key')
-    api_secret_key = ssm_client.get_parameter(Name='elongate_api_secret_key')
-    access_token = ssm_client.get_parameter(Name='elongate_access_token')
-    access_token_secret = ssm_client.get_parameter(Name='elongate_access_token_secret')
+    api_key = ssm_client.get_parameter(Name='elongate_api_key')['Value']
+    api_secret_key = ssm_client.get_parameter(Name='elongate_api_secret_key')['Value']
+    access_token = ssm_client.get_parameter(Name='elongate_access_token')['Value']
+    access_token_secret = ssm_client.get_parameter(Name='elongate_access_token_secret')['Value']
 except Exception as e:
     print("failed to get twitter keys from SSM! exiting...")
 
