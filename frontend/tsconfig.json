@@ -6,6 +6,7 @@
 */
 {
   "files": [],
+  "baseUrl": "frontend",
   "references": [
     {
       "path": "./tsconfig.app.json"
