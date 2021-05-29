@@ -33,7 +33,7 @@ jobs:
       - name: Install NPM dependencies
         run: |
           npm install
-          npm install "./src"
+          npm install "./backend"
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
