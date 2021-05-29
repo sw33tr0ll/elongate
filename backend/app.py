@@ -20,13 +20,17 @@ try:
 except Exception as e:
     print(f"failed to connect to Twitter API :: {e}")
 
-def check_tweet(event, _):
+def check_recent_elon_tweets(event, _):
+    print("event")
+    recent_tweet_sentiment = {}
+    for tweet in api.get_users_tweets("elonmusk"):
+        recent_tweet_sentiment[tweet.id] = comprehend.detect_sentiment(Text=(tweet.text),LanguageCode='en')['Sentiment']
     return {
         "statusCode": 200,
         "headers": {
             'Access-Control-Allow-Origin': '*',
         },
-        "body": json.dumps({"coming soon": "coming_soon"})
+        "body": json.dumps(recent_tweet_sentiment)
     }
 def notify_result(event, _):
     return {
