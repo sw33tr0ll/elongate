@@ -21,7 +21,7 @@ except Exception as e:
     print(f"failed to connect to Twitter API :: {e}")
 
 def check_recent_elon_tweets(event, _):
-    print("event")
+    print(event)
     recent_tweet_sentiment = {}
     for tweet in api.user_timeline("elonmusk"):
         recent_tweet_sentiment[tweet.id] = comprehend.detect_sentiment(Text=(tweet.text),LanguageCode='en')['Sentiment']
