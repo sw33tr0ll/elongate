@@ -10,7 +10,14 @@ try:
     access_token = ssm_client.get_parameter(Name='elongate_access_token')['Value']
     access_token_secret = ssm_client.get_parameter(Name='elongate_access_token_secret')['Value']
 except Exception as e:
-    print("failed to get twitter keys from SSM! exiting...")
+    print(f"failed to get twitter keys from SSM :: {e}")
+
+try:
+    auth = tweepy.OAuthHandler(api_key, api_secret_key)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
+except Exception as e:
+    print(f"failed to connect to Twitter API :: {e}")
 
 def check_tweet(event, _):
     return {
@@ -38,9 +45,7 @@ def analyze_tweet(event, _):
         else:
             tweet_url = post_data['tweet']
         tweet_id = tweet_url.split('/')[-1]
-        auth = tweepy.OAuthHandler(api_key, api_secret_key)
-        auth.set_access_token(access_token, access_token_secret)
-        api = tweepy.API(auth)
+        
         elon_tweet = api.get_status(tweet_id)
         print(f"found elon tweet :: {elon_tweet}")
         #regex elon tweet link
