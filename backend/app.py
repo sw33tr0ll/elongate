@@ -51,6 +51,7 @@ def analyze_tweet(event, _):
         #regex elon tweet link
         #check if tweet is live
         #check if tweet mentions stonk/coin
+        elon_tweet_text = elon_tweet.text
         #NLP score for tweet
         #ByBit cart link for tweet
         #notification?
@@ -64,6 +65,7 @@ def analyze_tweet(event, _):
                 "valid_elon_tweet":"true",
                 "mentioned_stonks_or_coins": "none",
                 "sentiment": "none",
+                "text": elon_tweet_text,
                 "bitbuy_link": "none"
             })
         }
