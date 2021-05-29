@@ -24,6 +24,7 @@ def check_recent_elon_tweets(event, _):
     print(event)
     recent_tweet_sentiment = {}
     for tweet in api.user_timeline("elonmusk"):
+        print(tweet)
         recent_tweet_sentiment[tweet.id] = comprehend.detect_sentiment(Text=(tweet.text),LanguageCode='en')['Sentiment']
     return {
         "statusCode": 200,
