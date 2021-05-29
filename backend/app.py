@@ -46,7 +46,13 @@ def analyze_tweet(event, _):
             "headers": {
                 'Access-Control-Allow-Origin': '*',
             },
-            "body": json.dumps({"tweet": tweet_url,"valid_elon_tweet":"true"})
+            "body": json.dumps({
+                "tweet_url": tweet_url,
+                "valid_elon_tweet":"true",
+                "mentioned_stonks_or_coins": "none",
+                "sentiment": "none",
+                "bitbuy_link": "none"
+            })
         }
     except Exception as e:
         print(e)
