@@ -23,7 +23,7 @@ except Exception as e:
 def check_recent_elon_tweets(event, _):
     print("event")
     recent_tweet_sentiment = {}
-    for tweet in api.get_users_tweets("elonmusk"):
+    for tweet in api.user_timeline("elonmusk"):
         recent_tweet_sentiment[tweet.id] = comprehend.detect_sentiment(Text=(tweet.text),LanguageCode='en')['Sentiment']
     return {
         "statusCode": 200,
