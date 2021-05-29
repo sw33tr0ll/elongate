@@ -28,6 +28,6 @@ functions:
     handler: app.analyze_tweet
     events:
       - http:
-          path: /analyze
+          path: analyze
           method: post
           cors: true
