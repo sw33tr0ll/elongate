@@ -1,0 +1,33 @@
+
+service: elongate
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+
+plugins:
+  - serverless-domain-manager
+  
+custom:                                             # settings for the plugins: 
+  customDomain:                                     # | custom domain:
+    domainName: "elongate.loganevans.me"      # --> 
+    stage: ${opt:stage,'dev'}                       # --> adds /prod/ or /dev/
+    basePath: ${opt:stage,'dev'}                    # --> everything 
+    region: us-east-1                               # --> in us-east-1
+    certificateName: "*.loganevans.me"          # --> TLS certificate in ACM
+    endpointType: "regional"                        # --> regional endpoint
+    securityPolicy: tls_1_2                         # --> TLS 1.2
+    createRoute53Record: true                       # --> creates / replaces Route53 record
+    apiType: rest                                   # --> REST API
+    autoDomain: true                                # --> ?
+
+functions:
+  analyzeTweet:
+    handler: app.analyze_tweet
+    events:
+      - http:
+          path: /analyze
+          method: post
+          cors: true

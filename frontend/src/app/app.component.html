@@ -1,0 +1,41 @@
+<div class="toolbar" role="banner">
+  <img
+    width="60"
+    alt="Elon"
+    src="https://external-preview.redd.it/8_Cwxt7TP8ylppaitKHiR9D6DBtb1cu5s5q2HkV0soQ.png?auto=webp&s=528b70fdab893154c3d2827f11f06b59ddaf5434"
+  />
+  <span>Elongate</span>
+    <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+  <span>{{ title }} is running!</span>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="tweet">Tweet</label>
+        <input
+            formControlName="tweet"
+            id="tweet"
+            type="text"
+            class="form-control">
+        <div *ngIf="f.tweet.touched && f.tweet.invalid" class="alert alert-danger">
+            <div *ngIf="f.tweet.errors.required">Elon Tweet URL is required.</div>
+            <div *ngIf="f.tweet.errors.pattern">Please enter a valid Elon tweet url.</div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>
+
+  <!-- Footer -->
+  <footer>
+      Love Elongate?&nbsp;
+      <a href="https://github.com/" target="_blank" rel="noopener"> Give our repo a star.
+        <div class="github-star-badge">
+            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          Star
+        </div>
+      </a>
+  </footer>
+
+<router-outlet></router-outlet>
