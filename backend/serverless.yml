@@ -34,10 +34,14 @@ custom:                                             # settings for the plugins:
     autoDomain: true                                # --> ?
 
 functions:
-  checkTweets:
-    handler: app.check_tweets
+  checkRecentElonTweets:
+    handler: app.check_recent_elon_tweets
     events:
       - schedule: rate(1 minute)
+      - http:
+          path: recent
+          method: any
+          cors: true
   analyzeTweet:
     handler: app.analyze_tweet
     events:
