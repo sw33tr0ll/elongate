@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   submit() {
     const tweet_url = this.form.value.tweet;
     console.log(tweet_url);
-    this.http.post('https://elongate-api.loganevans.me/analyze',{'tweet': tweet_url}).subscribe(data => {
+    this.http.post('https://elongate-api.loganevans.me/prod/analyze',{'tweet': tweet_url}).subscribe(data => {
       this.api_response = data;
       console.log(this.api_response);
     }, err => console.error(err), () => console.log('Finished Loading...'));
