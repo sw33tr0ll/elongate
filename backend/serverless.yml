@@ -24,6 +24,10 @@ custom:                                             # settings for the plugins:
     autoDomain: true                                # --> ?
 
 functions:
+  checkTweets:
+    handler: app.check_tweets
+    events:
+      - schedule: rate(1 minute)
   analyzeTweet:
     handler: app.analyze_tweet
     events:
@@ -31,3 +35,5 @@ functions:
           path: analyze
           method: any
           cors: true
+  notifyResult:
+     handler: app.notify_result

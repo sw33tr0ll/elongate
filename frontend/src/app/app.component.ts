@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AnalysisResponse } from './models/AnalysisResponse';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AppComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   title: string;
-  api_response: any;
+  api_response: AnalysisResponse[] = [];
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
     const tweet_url = this.form.value.tweet;
     console.log(tweet_url);
     this.http.post('https://elongate-api.loganevans.me/prod/analyze',{'tweet': tweet_url}).subscribe(data => {
-      this.api_response = data;
+      this.api_response = Object.values(data);
       console.log(this.api_response);
     }, err => console.error(err), () => console.log('Finished Loading...'));
   }
