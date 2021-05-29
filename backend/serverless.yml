@@ -12,7 +12,7 @@ plugins:
   
 custom:                                             # settings for the plugins: 
   customDomain:                                     # | custom domain:
-    domainName: "elongate.loganevans.me"      # --> 
+    domainName: "elongate-api.loganevans.me"      # --> 
     stage: ${opt:stage,'dev'}                       # --> adds /prod/ or /dev/
     basePath: ${opt:stage,'dev'}                    # --> everything 
     region: us-east-1                               # --> in us-east-1
