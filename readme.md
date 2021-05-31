@@ -8,6 +8,8 @@ What stocks or cryptocurrencies is Elon hyping on Twitter?
   <br>
 </p>
 
+### https://elongate.loganevans.me/
+
 ### Coming soon
 - automatic purchases on ByBit
 - improvement to AI
