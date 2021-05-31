@@ -1,10 +1,16 @@
-## Elongate (working title)
+## Elongate
 
-### MVP
+What stocks or cryptocurrencies is Elon hyping on Twitter?
 
-User visits site, pastes link to tweet
-
-Backend determines if it's Elon tweeting about a stonk / coin and generates a purchase order (for Bybit / Coinbase)
+<p align="center">
+  <br>
+    <img src="https://elongate.s3.amazonaws.com/elon.webp" width="250"/>
+  <br>
+</p>
 
 ### Coming soon
-- automatic and 100x leverage
+- automatic purchases on ByBit
+- improvement to AI
+- track rate of return
+- notifications / manual purchases
+- pull from other sources (twitter, google)?
