@@ -12,7 +12,8 @@ import { AnalysisResponse } from './models/AnalysisResponse';
 export class AppComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   title: string;
-  api_response: any;
+  single_analysis: any;
+  recent_tweets: any;
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -29,8 +30,14 @@ export class AppComponent implements OnInit {
     const tweet_url = this.form.value.tweet;
     console.log(tweet_url);
     this.http.post('https://elongate-api.loganevans.me/prod/analyze',{'tweet': tweet_url}).subscribe(data => {
-      this.api_response = JSON.stringify(data).replace(/([{},:])/g, ' $1 ');
-      console.log(this.api_response);
+      this.single_analysis = JSON.stringify(data).replace(/([{},:])/g, ' $1 ');
+      console.log(this.single_analysis);
+    }, err => console.error(err), () => console.log('Finished Loading...'));
+  }
+  seeRecent() {
+    this.http.get('https://elongate-api.loganevans.me/prod/recent').subscribe(data => {
+      this.recent_tweets = JSON.stringify(data).replace(/([{},:])/g, ' $1 ');
+      console.log(this.recent_tweets);
     }, err => console.error(err), () => console.log('Finished Loading...'));
   }
 }

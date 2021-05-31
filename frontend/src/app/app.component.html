@@ -9,11 +9,13 @@
 </div>
 
 <div class="content" role="main">
-  <h3><a href="https://elongate-api.loganevans.me/prod/recent">See Recent Tweet Scores</a></h3>
-  <br>
+  <button class="btn btn-primary" type="submit" (click)="seeRecent()">See Recent Elon Stock/Coin Tweet Sentiment</button>
+  <br />
+  <p>or...</p>
+  <br />
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
-        <label for="tweet">Analyze Tweet</label>
+        <label for="tweet">Analyze a Tweet</label>
         <input
             formControlName="tweet"
             id="tweet"
@@ -26,7 +28,9 @@
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
   </form>
-    <p>{{api_response}}</p>
+  <br />
+  <p>{{single_analysis}}</p>
+  <p>{{recent_tweets}}</p>
 </div>
 
   <!-- Footer -->
