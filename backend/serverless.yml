@@ -26,7 +26,7 @@ custom:                                             # settings for the plugins:
     domainName: "api-elongate.loganevans.me"      # --> 
     stage: ${opt:stage,'dev'}                       # --> adds /prod/ or /dev/
     basePath: ${opt:stage,'dev'}                    # --> everything 
-    region: us-east-1                               # --> in us-east-1
+    region: eu-west-3                               # --> in us-east-1
     certificateName: "*.loganevans.me"          # --> TLS certificate in ACM
     endpointType: "regional"                        # --> regional endpoint
     securityPolicy: tls_1_2                         # --> TLS 1.2
