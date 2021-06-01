@@ -1,6 +1,7 @@
 import json
 import tweepy
 import boto3
+import bybit
 
 ssm = boto3.client('ssm')
 comprehend = boto3.client('comprehend')
@@ -10,15 +11,18 @@ try:
     api_secret_key = ssm.get_parameter(Name='elongate_api_secret_key')['Parameter']['Value']
     access_token = ssm.get_parameter(Name='elongate_access_token')['Parameter']['Value']
     access_token_secret = ssm.get_parameter(Name='elongate_access_token_secret')['Parameter']['Value']
+    bybit_api_secret = ssm.get_parameter(Name='elongate_bybit_api_secret')['Parameter']['Value']
+    bybit_secret = ssm.get_parameter(Name='elongate_bybit_secret')['Parameter']['Value']
 except Exception as e:
-    print(f"failed to get twitter keys from SSM :: {e}")
+    print(f"failed to get API keys from SSM :: {e}")
 
 try:
     auth = tweepy.OAuthHandler(api_key, api_secret_key)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
+    client  = bybit.bybit(test=True, api_key=bybit_secret, api_secret=bybit_api_secret)
 except Exception as e:
-    print(f"failed to connect to Twitter API :: {e}")
+    print(f"failed to connect to 3rd Party API :: {e}")
 
 def check_recent_elon_tweets(event, _):
     print(event)
