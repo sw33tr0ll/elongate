@@ -43,7 +43,7 @@ jobs:
         run: |
           pip install poetry
           serverless plugin install --name serverless-python-requirements
-          serverless plugin install --name serverless-domain-manager
+      # serverless plugin install --name serverless-domain-manager
       - name: Deploy to AWS
         working-directory: "./backend"
         run: sls deploy -v -s prod
