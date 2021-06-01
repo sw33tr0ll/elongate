@@ -29,13 +29,13 @@ export class AppComponent implements OnInit {
   submit() {
     const tweet_url = this.form.value.tweet;
     console.log(tweet_url);
-    this.http.post('https://api-elongate.loganevans.me/prod/analyze',{'tweet': tweet_url}).subscribe(data => {
+    this.http.post('https://5co7ge0tug.execute-api.eu-west-3.amazonaws.com/prod/analyze',{'tweet': tweet_url}).subscribe(data => {
       this.single_analysis = JSON.stringify(data).replace(/([{},:])/g, ' $1 ');
       console.log(this.single_analysis);
     }, err => console.error(err), () => console.log('Finished Loading...'));
   }
   seeRecent() {
-    this.http.get('https://api-elongate.loganevans.me/prod/recent').subscribe(data => {
+    this.http.get('https://5co7ge0tug.execute-api.eu-west-3.amazonaws.com/prod/recent').subscribe(data => {
       this.recent_tweets = JSON.stringify(data).replace(/([{},:])/g, ' $1 ');
       console.log(this.recent_tweets);
     }, err => console.error(err), () => console.log('Finished Loading...'));
