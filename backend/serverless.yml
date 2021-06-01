@@ -23,7 +23,7 @@ custom:                                             # settings for the plugins:
   pythonRequirements:
     usePoetry: true
   customDomain:                                     # | custom domain:
-    domainName: "elongate-api.loganevans.me"      # --> 
+    domainName: "api-elongate.loganevans.me"      # --> 
     stage: ${opt:stage,'dev'}                       # --> adds /prod/ or /dev/
     basePath: ${opt:stage,'dev'}                    # --> everything 
     region: us-east-1                               # --> in us-east-1
