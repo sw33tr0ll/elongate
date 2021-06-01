@@ -20,9 +20,17 @@ try:
     auth = tweepy.OAuthHandler(api_key, api_secret_key)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
-    client  = bybit.bybit(test=True, api_key=bybit_secret, api_secret=bybit_api_secret)
+    bybit_client  = bybit.bybit(api_key=bybit_secret, api_secret=bybit_api_secret)
 except Exception as e:
     print(f"failed to connect to 3rd Party API :: {e}")
+
+def get_bybit_link():
+    try:
+        print("testing bybit client...")
+        print(bybit_client)
+    except Exception as e:
+        print(e)
+    return "coming soon"
 
 def check_recent_elon_tweets(event, _):
     print(event)
@@ -78,7 +86,7 @@ def analyze_tweet(event, _):
                 "mentioned_stonks_or_coins": "none",
                 "elon_sentiment": elon_sentiment,
                 "text": elon_tweet_text,
-                "bitbuy_link": "none"
+                "bybit_link": get_bybit_link()
             })
         }
     except Exception as e:
