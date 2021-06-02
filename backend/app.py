@@ -38,7 +38,17 @@ def check_recent_elon_tweets(event, _):
     for tweet in api.user_timeline("elonmusk"):
         print(tweet)
         url = f"https://twitter.com/elonmusk/status/{tweet.id}"
-        recent_tweet_sentiment[url] = comprehend.detect_sentiment(Text=(tweet.text),LanguageCode='en')['Sentiment']
+        try:
+            recent_tweet_sentiment[url] = comprehend.detect_sentiment(Text=(tweet.text),LanguageCode='en')['Sentiment']
+        except Exception as e:
+            print(e)
+            return {
+                "statusCode": 555,
+                "headers": {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                "body": json.dumps({"error": e})
+            }
     return {
         "statusCode": 200,
         "headers": {
