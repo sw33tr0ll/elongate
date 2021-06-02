@@ -3,8 +3,9 @@ import tweepy
 import boto3
 import bybit
 
-ssm = boto3.client('ssm')
-comprehend = boto3.client('comprehend')
+boto3_session = boto3.Session(region_name="us-east-1")
+ssm = boto3_session.client('ssm')
+comprehend = boto3_session.client('comprehend')
 
 try:
     api_key = ssm.get_parameter(Name='elongate_api_key')['Parameter']['Value']
